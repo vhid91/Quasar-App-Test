@@ -4,7 +4,17 @@ const routes = [
     path: '/',
     component: () => import('layouts/MyLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/Index.vue') }
+      { path: '', component: () => import('pages/Index.vue') },
+      { path: '/login', component: () => import('pages/login.vue') },
+    ]
+  },
+  {
+    path: '/admin',
+    component: () => import('layouts/AdminLayout.vue'),
+    children: [
+      { path: '', component: () => import('pages/admin/dashboard.vue') },
+      { path: 'reports', component: () => import('pages/admin/reports.vue') },
+      { path: 'reports/:id', component: () => import('pages/admin/reports.vue') }
     ]
   }
 ]
