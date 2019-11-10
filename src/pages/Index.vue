@@ -53,9 +53,9 @@
 <script>
 export default {
   name: "PageIndex",
- created(){
-      this.$bind("songs", this.$db.collection("songs"))
-    },
+  created() {
+    this.$bind("songs", this.$db.collection("songs"));
+  },
   methods: {
     addMusic() {
       if (JSON.stringify(this.musicObj) == "{}") {
@@ -63,33 +63,39 @@ export default {
       } else {
         // this.songs.push(this.musicObj);
 
-        this.$db.collection("songs").add(this.musicObj)
+        this.$db.collection("songs").add(this.musicObj);
         // this.$router.push("/login")
-        this.clear()
+        this.clear();
       }
     },
-    clear(){
-      this.musicObj = {}
-      this.isEditing = false
+    clear() {
+      this.musicObj = {};
+      this.isEditing = false;
     },
     editMusic(id, song) {
       this.musicObj = {
-        title : song.title,
-        artist : song.artist
-      }
-      this.id = id
+        title: song.title,
+        artist: song.artist
+      };
+      this.id = id;
       this.isEditing = true;
     },
     updateMusic() {
-      console.log(this.index, this.musicObj)
+      console.log(this.index, this.musicObj);
       this.songs[this.index] = this.musicObj;
-      this.$db.collection("songs").doc(this.id).set(this.musicObj)
-      this.clear()
+      this.$db
+        .collection("songs")
+        .doc(this.id)
+        .set(this.musicObj);
+      this.clear();
     },
     deleteMusic() {
       // this.songs.splice(this.index, 1);
-      console.log(this.id)
-      this.$db.collection("songs").doc(this.id).delete()
+      console.log(this.id);
+      this.$db
+        .collection("songs")
+        .doc(this.id)
+        .delete();
       this.isConfirm = false;
     },
     submit() {
